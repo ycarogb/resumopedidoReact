@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ResumoPedidosApp - V2
 
-## Getting Started
+## Descrição
 
-First, run the development server:
+Essa aplicação tem objetivo retornar um resumo de pedido para um cliente.
+Os produtos são cadastrados na própria plataforma e o usuário pode copiar o resumo ao final para compartilhar com o seu cliente.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+É um projeto para estudo e exploração do React
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[![Generic badge](https://img.shields.io/badge/Version-2.0-<COLOR>.svg)](https://shields.io/)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Autenticação de usuário
+- Adicionar, remover e editar registros de pratos com descrição e valor
+- Criação resumo do pedido em formato de texto
+- Cópia de texto do resumo do pedido
 
-## Learn More
+## Como rodar a aplicação
 
-To learn more about Next.js, take a look at the following resources:
+1. Instale as dependências:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```sh
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Rode o projeto em modo desenvolvimento:
 
-## Deploy on Vercel
+   ```sh
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tecnologias utilizadas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## Autor
+
+ <img style="border-radius: 80%;" src="https://i1.sndcdn.com/avatars-001002863491-80v8qp-t500x500.jpg" width="100px;" alt=""/>
+<br />
+Feito de ❤️ por Ycaro Batalha
+
+<br />
+👋🏽 Let's talk!
+<br />
+
+[![Linkedin Badge](https://img.shields.io/badge/-Ycaro-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/ycaro-gabriel-da-costa-batalha-2019/)](https://www.linkedin.com/in/ycaro-gabriel-da-costa-batalha-2019/)
