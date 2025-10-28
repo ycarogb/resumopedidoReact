@@ -19,43 +19,65 @@ function LoginForm({ setIsLoggedIn }) {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: 300,
-        margin: "50px auto",
-        padding: 20,
-        border: "1px solid #ccc",
-        borderRadius: 8,
-      }}
-    >
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 10 }}>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ width: "100%", padding: 8, boxSizing: "border-box" }}
-            required
-          />
-        </div>
-        <div style={{ marginBottom: 10 }}>
-          <label>Senha:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", padding: 8 }}
-            required
-          />
-        </div>
-        <button type="submit" style={{ width: "100%", padding: 8 }}>
-          Entrar
-        </button>
-      </form>
-      {message && <div style={{ marginTop: 15 }}>{message}</div>}
-    </div>
+    <>
+      <div>
+        <h1 className={"text-center mt-24 font-sans text-4xl"}>
+          Bem-vindo ao ResumoPedido
+        </h1>
+        <h2
+          style={{
+            textAlign: "center",
+            fontFamily: "fantasy",
+            fontSize: 40,
+            marginTop: 50,
+          }}
+        >
+          Login
+        </h2>
+      </div>
+      <div
+        style={{
+          maxWidth: 300,
+          margin: "50px auto",
+          padding: 20,
+          border: "1px solid #ccc",
+          borderRadius: 8,
+        }}
+      >
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: 10 }}>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="inputs"
+              style={{ width: "100%", padding: 10, marginTop: 10 }}
+              required
+            />
+          </div>
+          <div style={{ marginBottom: 10 }}>
+            <label>Senha:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="inputs"
+              style={{ width: "100%", padding: 10, marginTop: 10 }}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="botoes"
+            style={{ width: "100%", padding: 10, marginTop: 10 }}
+          >
+            Entrar
+          </button>
+        </form>
+        {message && <div style={{ marginTop: 15 }}>{message}</div>}
+      </div>
+    </>
   );
 }
 

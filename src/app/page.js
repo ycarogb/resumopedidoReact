@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AdminPainel from "./AdminPainel.js"; // Adjust the path if needed
 import LoginForm from "./LoginForm.js"; // Add this import if LoginForm is also undefined
+import "./globals.css";
 
 export default function Home() {
   let content;
