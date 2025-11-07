@@ -1,18 +1,32 @@
 "use client";
 
 import { useState, React } from "react";
+import Image from "next/image";
+import Input from "./components/Input";
+import Button from "./components/Button";
+import { useRouter } from "next/navigation";
 
-function LoginForm({ setIsLoggedIn }) {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simples validação para teste
-    if (email === "teste@teste.com" && password === "123456") {
-      setMessage("Login realizado com sucesso!");
-      setIsLoggedIn(true); // Atualiza o estado de login
+    const loginsDisponiveis = [
+      { email: "teste@teste.com", password: "123456" },
+    ];
+
+    const usuarioValido = loginsDisponiveis.some(
+      (login) => login.email === email && login.password === password
+    );
+
+    if (usuarioValido) {
+      const dadosAutenticacao = { isLoggedIn: true };
+      localStorage.setItem("auth", JSON.stringify(dadosAutenticacao));
+      window.alert("Login realizado com sucesso!");
+      router.push("/admin");
     } else {
       setMessage("Email ou senha incorretos.");
     }
@@ -21,19 +35,18 @@ function LoginForm({ setIsLoggedIn }) {
   return (
     <>
       <div>
-        <h1 className={"text-center mt-24 font-sans text-4xl"}>
-          Bem-vindo ao ResumoPedido
-        </h1>
-        <h2
-          style={{
-            textAlign: "center",
-            fontFamily: "fantasy",
-            fontSize: 40,
-            marginTop: 50,
-          }}
-        >
-          Login
-        </h2>
+        <div className="grid-cols-2 flex justify-center mt-10 mb-5">
+          <h1 className="text-center mt-6 font-extrabold text-4xl">
+            Bem-vindo ao ResumoPedido
+          </h1>
+          <Image
+            width={100}
+            height={100}
+            src="/images/icone-carrinho.webp" // Caminho relativo à pasta public
+            alt="carrinho de compras"
+          />
+        </div>
+        <h2 className="text-center font-extrabold text-4xl">Login</h2>
       </div>
       <div
         style={{
@@ -44,38 +57,34 @@ function LoginForm({ setIsLoggedIn }) {
           borderRadius: 8,
         }}
       >
-        <form onSubmit={handleSubmit}>
+        <form autoComplete="off" onSubmit={handleSubmit}>
           <div style={{ marginBottom: 10 }}>
-            <label>Email:</label>
-            <input
+            <Input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="inputs"
-              style={{ width: "100%", padding: 10, marginTop: 10 }}
-              required
+              required={true}
+              placeholder={"Digite seu email"}
+              label="Email: "
             />
           </div>
           <div style={{ marginBottom: 10 }}>
-            <label>Senha:</label>
-            <input
+            <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="inputs"
-              style={{ width: "100%", padding: 10, marginTop: 10 }}
-              required
+              required={true}
+              placeholder={"Digite sua senha"}
+              label="Senha: "
             />
           </div>
-          <button
-            type="submit"
-            className="botoes"
-            style={{ width: "100%", padding: 10, marginTop: 10 }}
-          >
-            Entrar
-          </button>
+          <Button label="Entrar" type="submit" />
         </form>
-        {message && <div style={{ marginTop: 15 }}>{message}</div>}
+        {message && (
+          <div className="mt-4 p-3 bg-red-100 border border-red-700 text-red-800 font-semibold text-center rounded-md shadow-sm">
+            {message}
+          </div>
+        )}
       </div>
     </>
   );
