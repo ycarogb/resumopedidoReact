@@ -4,11 +4,13 @@ import { useState, React } from "react";
 import Image from "next/image";
 import Input from "./components/Input";
 import Button from "./components/Button";
+import { useRouter } from "next/navigation";
 
-function LoginForm({ setIsLoggedIn }) {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,13 +18,15 @@ function LoginForm({ setIsLoggedIn }) {
       { email: "teste@teste.com", password: "123456" },
     ];
 
-    if (
-      loginsDisponiveis.some(
-        (login) => login.email === email && login.password === password
-      )
-    ) {
-      setMessage("Login realizado com sucesso!");
-      setIsLoggedIn(true); // Atualiza o estado de login
+    const usuarioValido = loginsDisponiveis.some(
+      (login) => login.email === email && login.password === password
+    );
+
+    if (usuarioValido) {
+      const dadosAutenticacao = { isLoggedIn: true };
+      localStorage.setItem("auth", JSON.stringify(dadosAutenticacao));
+      window.alert("Login realizado com sucesso!");
+      router.push("/admin");
     } else {
       setMessage("Email ou senha incorretos.");
     }
@@ -74,7 +78,7 @@ function LoginForm({ setIsLoggedIn }) {
               label="Senha: "
             />
           </div>
-          <Button label="Entrar" />
+          <Button label="Entrar" type="submit" />
         </form>
         {message && (
           <div className="mt-4 p-3 bg-red-100 border border-red-700 text-red-800 font-semibold text-center rounded-md shadow-sm">

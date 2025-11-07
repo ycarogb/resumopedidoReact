@@ -1,9 +1,10 @@
-function Button({ label }) {
+function Button({ label, type, onclick }) {
   return (
     <button
       className="botoes"
       style={{ width: "100%", padding: 10, marginTop: 10 }}
-      type="submit"
+      type={type}
+      onClick={onclick}
     >
       {label}
     </button>
