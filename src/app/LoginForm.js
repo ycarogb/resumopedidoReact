@@ -5,6 +5,7 @@ import Image from "next/image";
 import Input from "./components/Input";
 import Button from "./components/Button";
 import { useRouter } from "next/navigation";
+import usuariosCadastrados from "./lib/usuarios";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -14,11 +15,8 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const loginsDisponiveis = [
-      { email: "teste@teste.com", password: "123456" },
-    ];
 
-    const usuarioValido = loginsDisponiveis.some(
+    const usuarioValido = usuariosCadastrados.some(
       (login) => login.email === email && login.password === password
     );
 
@@ -32,11 +30,15 @@ function LoginForm() {
     }
   };
 
+  const handleRecuperarSenha = () => {
+    router.push("/recuperar-senha");
+  };
+
   return (
     <>
       <div>
         <div className="grid-cols-2 flex justify-center mt-10 mb-5">
-          <h1 className="text-center mt-6 font-extrabold text-4xl">
+          <h1 className="text-center mt-6 font-extrabold text-3xl">
             Bem-vindo ao ResumoPedido
           </h1>
           <Image
@@ -46,7 +48,7 @@ function LoginForm() {
             alt="carrinho de compras"
           />
         </div>
-        <h2 className="text-center font-extrabold text-4xl">Login</h2>
+        <h2 className="text-center font-extrabold text-2xl">Login</h2>
       </div>
       <div
         style={{
@@ -79,6 +81,11 @@ function LoginForm() {
             />
           </div>
           <Button label="Entrar" type="submit" />
+          <Button
+            label="Recuperar senha"
+            type="button"
+            onclick={handleRecuperarSenha}
+          />
         </form>
         {message && (
           <div className="mt-4 p-3 bg-red-100 border border-red-700 text-red-800 font-semibold text-center rounded-md shadow-sm">
