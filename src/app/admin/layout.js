@@ -17,7 +17,15 @@ export default function AdminLayout({ children }) {
 
   return (
     <>
-      <div>
+      <div
+        style={{
+          maxWidth: 300,
+          margin: "50px auto",
+          padding: 20,
+          border: "1px solid #ccc",
+          borderRadius: 8,
+        }}
+      >
         <header
           style={{ display: "flex", justifyContent: "flex-end", padding: 10 }}
         ></header>
