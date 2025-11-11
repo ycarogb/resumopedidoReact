@@ -16,12 +16,15 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const usuarioValido = usuariosCadastrados.some(
+    const usuarioValido = usuariosCadastrados.find(
       (login) => login.email === email && login.password === password
     );
 
     if (usuarioValido) {
-      const dadosAutenticacao = { isLoggedIn: true };
+      const dadosAutenticacao = {
+        isLoggedIn: true,
+        funcaoUsuario: usuarioValido.role,
+      };
       localStorage.setItem("auth", JSON.stringify(dadosAutenticacao));
       window.alert("Login realizado com sucesso!");
       router.push("/admin");
@@ -32,6 +35,10 @@ function LoginForm() {
 
   const handleRecuperarSenha = () => {
     router.push("/recuperar-senha");
+  };
+
+  const handleCadastrarUsuario = () => {
+    router.push("/cadastrar-usuario");
   };
 
   return (
@@ -81,11 +88,20 @@ function LoginForm() {
             />
           </div>
           <Button label="Entrar" type="submit" />
-          <Button
-            label="Recuperar senha"
-            type="button"
-            onclick={handleRecuperarSenha}
-          />
+          <div style={{ display: "flex", gap: 10, marginTop: 5 }}>
+            <Button
+              label="Recuperar senha"
+              type="button"
+              onclick={handleRecuperarSenha}
+              style={{ width: "50%", padding: 10, marginTop: 10 }}
+            />
+            <Button
+              label="Cadastrar usuário"
+              type="button"
+              onclick={handleCadastrarUsuario}
+              style={{ width: "50%", padding: 10, marginTop: 10 }}
+            />
+          </div>
         </form>
         {message && (
           <div className="mt-4 p-3 bg-red-100 border border-red-700 text-red-800 font-semibold text-center rounded-md shadow-sm">
