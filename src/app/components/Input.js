@@ -1,4 +1,4 @@
-function Input({ type, value, onChange, placeholder, required, label }) {
+function Input({ type, value, onChange, placeholder, required, label, style }) {
   return (
     <>
       <label>{label}</label>
@@ -7,7 +7,7 @@ function Input({ type, value, onChange, placeholder, required, label }) {
         value={value}
         onChange={onChange}
         className="inputs bg-foreground text-background rounded-md"
-        style={{ width: "100%", padding: 10, marginTop: 10 }}
+        style={style ?? { width: "100%", padding: 10, marginTop: 10 }}
         required={required}
         placeholder={placeholder}
         auto-complete="off"
