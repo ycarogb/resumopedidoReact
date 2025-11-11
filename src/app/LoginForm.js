@@ -6,6 +6,9 @@ import Input from "./components/Input";
 import Button from "./components/Button";
 import { useRouter } from "next/navigation";
 import usuariosCadastrados from "./lib/usuarios";
+import { funcoesUsuario } from "./lib/funcoesUsuarios";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -39,6 +42,26 @@ function LoginForm() {
 
   const handleCadastrarUsuario = () => {
     router.push("/cadastrar-usuario");
+  };
+
+  const responseGoogle = (response) => {
+    const usuarioGoogle = jwtDecode(response.credential);
+    const dadosAutenticacao = {
+      isLoggedIn: true,
+      funcaoUsuario: funcoesUsuario.COMUM,
+      loginType: "Google",
+    };
+
+    if (
+      usuarioGoogle.email === "ycarobatalha1@gmail.com" ||
+      "wallacefcosta@gmail.com"
+    ) {
+      dadosAutenticacao.funcaoUsuario = funcoesUsuario.ADMIN;
+    }
+
+    localStorage.setItem("auth", JSON.stringify(dadosAutenticacao));
+
+    router.push("/admin");
   };
 
   return (
@@ -87,7 +110,23 @@ function LoginForm() {
               label="Senha: "
             />
           </div>
-          <Button label="Entrar" type="submit" />
+          <div style={{ display: "flex", gap: 10, marginTop: 5 }}>
+            <Button
+              label="Entrar"
+              type="submit"
+              style={{
+                width: "100%",
+                padding: 10,
+                marginTop: 10,
+                marginBottom: 5,
+              }}
+            />
+          </div>
+          <GoogleLogin
+            clientID="1011143551853-fl96ut3dhue6bqfv3jge31q8hspr1nit.apps.googleusercontent.com"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+          />
           <div style={{ display: "flex", gap: 10, marginTop: 5 }}>
             <Button
               label="Recuperar senha"
