@@ -4,12 +4,17 @@ import { useRouter } from "next/navigation";
 import LoggoutButton from "../components/LoggoutButton";
 import { useEffect } from "react";
 import Button from "../components/Button";
+import { MdAddBox, MdReceipt } from "react-icons/md";
 
 export default function AdminLayout({ children }) {
   const router = useRouter();
 
   const handleCadastrarProduto = () => {
     router.push("/cadastrar-produto");
+  };
+
+  const handleCriarNovoResumoPedido = () => {
+    router.push("/criar-novo-resumo-pedido");
   };
 
   useEffect(() => {
@@ -43,7 +48,8 @@ export default function AdminLayout({ children }) {
             border: "1px solid #ccc",
             borderRadius: 8,
           }}
-          label={"Cadastrar produto"}
+          label={"Cadastrar Produto"}
+          icon={<MdAddBox />}
           onclick={handleCadastrarProduto}
         />
         <Button
@@ -56,7 +62,8 @@ export default function AdminLayout({ children }) {
             borderRadius: 8,
           }}
           label={"Novo Pedido"}
-          onclick={handleCadastrarProduto}
+          icon={<MdReceipt />}
+          onclick={handleCriarNovoResumoPedido}
         />
       </div>
     </>
