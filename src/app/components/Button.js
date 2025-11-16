@@ -1,4 +1,4 @@
-function Button({ label, type, style, onclick }) {
+function Button({ label, type, style, onclick, icon }) {
   return (
     <button
       className="botoes"
@@ -6,6 +6,16 @@ function Button({ label, type, style, onclick }) {
       type={type}
       onClick={onclick}
     >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 10,
+        }}
+      >
+        {icon && <span style={{ fontSize: 24 }}>{icon}</span>}
+      </div>
       {label}
     </button>
   );
