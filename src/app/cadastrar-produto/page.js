@@ -3,15 +3,53 @@ import { useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import InputDinheiro from "../components/InputDinheiro";
+import produtos from "../lib/produtos";
+import { useRouter } from "next/navigation";
+
 export default function CadastrarProduto() {
-  const [nomeDoPrato, setNomeDoPrato] = useState();
-  const [preco, setPreco] = useState();
+  const [nomeDoPrato, setNomeDoPrato] = useState("");
+  const [preco, setPreco] = useState(0);
+  const [precoFormatado, setPrecoFormatado] = useState("");
+  const router = useRouter();
 
   const handleVoltarTelaInicial = () => {
     router.push("/admin");
   };
 
-  const handleSubmit = () => {};
+  const produtoEstaCadastrado = () => {
+    var produtoJaCadastrado = produtos.some((p) => p.nome === nomeDoPrato);
+
+    if (produtoJaCadastrado) {
+      window.alert("Produto ja está cadastrado no sistema.");
+      return true;
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (produtoEstaCadastrado()) {
+      return;
+    }
+
+    const novoProduto = {
+      nome: nomeDoPrato,
+      valor: precoFormatado,
+    };
+
+    produtos.push(novoProduto);
+
+    console.log(produtos);
+    setNomeDoPrato("");
+    setPreco(0);
+    setPrecoFormatado("");
+    window.alert("Produto cadastrado com sucesso");
+    router.push("/cadastrar-produto");
+  };
+
+  const handleListarProdutosCadastrados = () => {
+    router.push("produtos-cadastrados");
+  };
 
   return (
     <>
@@ -34,71 +72,27 @@ export default function CadastrarProduto() {
               value={nomeDoPrato}
               onChange={(e) => setNomeDoPrato(e.target.value)}
               required={true}
-              placeholder={"Nome do prato"}
+              placeholder={"Digite o nome do prato"}
               label="Nome do prato: "
             />
           </div>
           <div style={{ marginBottom: 10 }}>
             <InputDinheiro
               value={preco}
-              onChange={(e) => setPreco(e.target.value)}
+              onChange={(e) => setPreco(e)}
               required={true}
-              placeholder={"Digite sua senha"}
-              label="Senha: "
-            />
-          </div>
-          <div>
-            <Input
-              type="password"
-              value={newPasswordConfirmation}
-              onChange={(e) => setnewPasswordConfirmation(e.target.value)}
-              required={true}
-              placeholder={"Confirme sua senha"}
-              label="Confirmar senha: "
+              placeholder={"Inclua o preço do produto"}
+              label="Preço: "
+              onPrecoFormatado={setPrecoFormatado}
             />
           </div>
           <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
+            <Button label="Cadastrar" type="submit" />
             <Button
-              label="Cadastrar"
-              type="submit"
-              style={{ flex: 7, padding: 10 }}
+              label={"Produtos Cadastrados"}
+              type={"button"}
+              onclick={handleListarProdutosCadastrados}
             />
-
-            <div
-              style={{
-                flex: 3,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "2px solid #ff69b4",
-                borderRadius: 8,
-                padding: 10,
-              }}
-            >
-              <label
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 5,
-                  cursor: "pointer",
-                }}
-              >
-                <Input
-                  type="checkbox"
-                  style={{
-                    width: 18,
-                    height: 18,
-                    cursor: "pointer",
-                    accentColor: "#ff69b4",
-                  }}
-                  checked={isAdmin}
-                  onChange={(p) => setIsAdmin(p.target.checked)}
-                />
-                <span style={{ fontSize: 16, whiteSpace: "nowrap" }}>
-                  Admin
-                </span>
-              </label>
-            </div>
           </div>
         </form>
       </div>
