@@ -2,9 +2,11 @@
 import produtos from "../lib/produtos";
 import Button from "../components/Button";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function ProdutosCadastrados() {
   const router = useRouter();
+  const [listaProdutos, setListaProdutos] = useState([]);
 
   const handleVoltarTelaInicial = () => {
     router.push("/admin");
@@ -19,17 +21,23 @@ export default function ProdutosCadastrados() {
   };
 
   const handleExcluirProduto = (produto) => {
+    setListaProdutos((prevProdutos) =>
+      prevProdutos.filter((p) => p.nome !== produto.nome)
+    );
     const index = produtos.findIndex((p) => p.nome === produto.nome);
 
     if (index > -1) {
       produtos.splice(index, 1);
       console.log(produtos);
-      router.push("/produtos-cadastrados");
       return;
     }
 
     console.log(produtos);
   };
+
+  useEffect(() => {
+    setListaProdutos([...produtos]);
+  }, []);
 
   return (
     <>
@@ -92,7 +100,7 @@ export default function ProdutosCadastrados() {
             </tr>
           </thead>
           <tbody>
-            {produtos.map((produto, index) => (
+            {listaProdutos.map((produto, index) => (
               <tr key={index}>
                 <td
                   style={{
