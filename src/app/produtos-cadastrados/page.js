@@ -18,6 +18,19 @@ export default function ProdutosCadastrados() {
     router.push("/");
   };
 
+  const handleExcluirProduto = (produto) => {
+    const index = produtos.findIndex((p) => p.nome === produto.nome);
+
+    if (index > -1) {
+      produtos.splice(index, 1);
+      console.log(produtos);
+      router.push("/produtos-cadastrados");
+      return;
+    }
+
+    console.log(produtos);
+  };
+
   return (
     <>
       <div style={{ position: "fixed", top: 20, right: 20 }}>
@@ -67,6 +80,15 @@ export default function ProdutosCadastrados() {
               >
                 Preço
               </th>
+              <th
+                style={{
+                  border: "1px solid #ccc",
+                  padding: 12,
+                  textAlign: "left",
+                }}
+              >
+                Excluir
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -87,6 +109,24 @@ export default function ProdutosCadastrados() {
                   }}
                 >
                   {produto.valor}
+                </td>
+                <td
+                  style={{
+                    border: "1px solid #ccc",
+                    padding: 12,
+                  }}
+                >
+                  <Button
+                    label={"—"}
+                    style={{
+                      width: "50%",
+                      padding: 5,
+                      marginLeft: 20,
+                      marginTop: 5,
+                    }}
+                    type={"button"}
+                    onclick={() => handleExcluirProduto(produto)}
+                  />
                 </td>
               </tr>
             ))}
