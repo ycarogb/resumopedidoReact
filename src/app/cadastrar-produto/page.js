@@ -34,7 +34,8 @@ export default function CadastrarProduto() {
 
     const novoProduto = {
       nome: nomeDoPrato,
-      valor: precoFormatado,
+      valor: preco / 100,
+      valorFormatado: precoFormatado,
     };
 
     produtos.push(novoProduto);

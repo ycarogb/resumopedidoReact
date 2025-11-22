@@ -116,7 +116,7 @@ export default function ProdutosCadastrados() {
                     padding: 12,
                   }}
                 >
-                  {produto.valor}
+                  {produto.valorFormatado}
                 </td>
                 <td
                   style={{
