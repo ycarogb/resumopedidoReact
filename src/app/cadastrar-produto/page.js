@@ -57,6 +57,9 @@ export default function CadastrarProduto() {
       <div style={{ position: "fixed", top: 20, right: 20 }}>
         <Button label="Sair" type="button" onclick={handleVoltarTelaInicial} />
       </div>
+      <div style={{ position: "fixed", top: 20, left: 20 }}>
+        <Button label="Home" type="button" onclick={handleVoltarTelaInicial} />
+      </div>
       <div
         style={{
           maxWidth: 300,

@@ -44,6 +44,15 @@ export default function CriarNovoResumoPedido() {
     router.push("/");
   };
 
+  const handleLimparResumo = () => {
+    setProdutosDoResumo([]);
+  };
+
+  const handleCopiar = () => {
+    navigator.clipboard.writeText(gerarTextoResumo());
+    window.alert("Resumo copiado");
+  };
+
   return (
     <>
       <div style={{ position: "fixed", top: 20, left: 20 }}>
@@ -84,11 +93,10 @@ export default function CriarNovoResumoPedido() {
                 alignContent: "center",
               }}
             />
-            <Button
-              label="Copiar"
-              onclick={() => navigator.clipboard.writeText(gerarTextoResumo())}
-              style={{ marginTop: 5 }}
-            />
+            <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
+              <Button label={"Copiar"} onclick={() => handleCopiar()} />
+              <Button label={"Limpar"} onclick={handleLimparResumo} />
+            </div>
           </div>
         )}
       </div>
