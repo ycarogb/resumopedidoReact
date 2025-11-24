@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import produtos from "../lib/produtos";
 import Button from "./Button";
+import Input from "./Input";
 
 export default function InputComBusca({ onSelect, label, placeholder }) {
   const [textoDigitado, setTextoDigitado] = useState("");
@@ -44,7 +45,7 @@ export default function InputComBusca({ onSelect, label, placeholder }) {
     <div ref={containerRef} style={{ position: "relative" }}>
       {label && <label>{label}</label>}
       <div style={{ display: "flex", gap: 5 }}>
-        <input
+        <Input
           type="text"
           className="input-busca"
           placeholder={placeholder}
@@ -54,21 +55,13 @@ export default function InputComBusca({ onSelect, label, placeholder }) {
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}
-          style={{
-            width: "100%",
-            padding: 2,
-            border: "2px solid #e0e0e0",
-            borderRadius: 8,
-            backgroundColor: "white",
-            color: "#333",
-            fontSize: 16,
-            outline: "none",
-            transition: "all 0.3s ease",
-            marginTop: 5,
-            width: "800%",
-          }}
         />
-        <Button onclick={abrirMenuSuspenso} type={"button"} label={"▼"} />
+        <Button
+          onclick={abrirMenuSuspenso}
+          type={"button"}
+          label={"▼"}
+          style={{ width: "20%", padding: 10 }}
+        />
       </div>
       {isOpen &&
         (textoDigitado === "" ? produtos : opcoesFiltradas).length > 0 && (

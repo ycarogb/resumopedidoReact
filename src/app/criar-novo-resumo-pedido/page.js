@@ -3,10 +3,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "../components/Button";
 import InputComBusca from "../components/InputComBusca";
+import Input from "../components/Input";
+import { MdAdd } from "react-icons/md";
 
 export default function CriarNovoResumoPedido() {
   const router = useRouter();
   const [produtosDoResumo, setProdutosDoResumo] = useState([]);
+  const [taxaDigitada, setTaxaDigitada] = useState("");
+  const [taxaEntrega, setTaxaEntrega] = useState(0);
 
   const handleVoltarTelaInicial = () => {
     router.push("/admin");
@@ -17,10 +21,13 @@ export default function CriarNovoResumoPedido() {
   };
 
   const calcularTotal = () => {
-    return produtosDoResumo.reduce(
+    const totalProdutos = produtosDoResumo.reduce(
       (total, produto) => total + produto.valor,
       0
     );
+
+    const totalPedido = totalProdutos + Number(taxaEntrega);
+    return totalPedido;
   };
 
   const gerarTextoResumo = () => {
@@ -29,6 +36,10 @@ export default function CriarNovoResumoPedido() {
     produtosDoResumo.forEach((produto, index) => {
       texto += `${index + 1}. ${produto.nome} - ${produto.valorFormatado}\n`;
     });
+
+    if (taxaEntrega) {
+      texto += `Taxa de entrega - R$ ${taxaEntrega},00`;
+    }
 
     texto += "\n━━━━━━━━━━━━━━━━━━━━\n";
     const totalFormatado = calcularTotal().toLocaleString("pt-BR", {
@@ -53,6 +64,13 @@ export default function CriarNovoResumoPedido() {
     window.alert("Resumo copiado");
   };
 
+  const handleAdicionarTaxaEntrega = () => {
+    if (taxaDigitada) {
+      setTaxaEntrega(taxaDigitada);
+      setTaxaDigitada("");
+    }
+  };
+
   return (
     <>
       <div style={{ position: "fixed", top: 20, left: 20 }}>
@@ -68,13 +86,34 @@ export default function CriarNovoResumoPedido() {
           padding: 20,
           border: "1px solid #ccc",
           borderRadius: 8,
+          marginTop: 150,
         }}
       >
         <InputComBusca
-          label={"Escolher produto"}
+          label={"Escolher produto: "}
           placeholder={"Digite o nome aqui..."}
           onSelect={handleSelectProduto}
         />
+        <div style={{ display: "flex", gap: 5, marginTop: 10 }}>
+          <Input
+            label={"Taxa de entrega: "}
+            type={"text"}
+            value={taxaDigitada}
+            onChange={(e) => setTaxaDigitada(e.target.value)}
+            required={false}
+            placeholder={"Digite a taxa de entrega..."}
+          />
+          <Button
+            type={"button"}
+            onclick={handleAdicionarTaxaEntrega}
+            style={{
+              width: "20%",
+              padding: 10,
+              marginTop: 28,
+            }}
+            icon={<MdAdd />}
+          />
+        </div>
 
         {produtosDoResumo.length > 0 && (
           <div style={{ marginTop: 20 }}>
