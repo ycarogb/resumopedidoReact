@@ -52,10 +52,14 @@ export default function CadastrarProduto() {
     router.push("produtos-cadastrados");
   };
 
+  const handleLogout = () => {
+    router.push("/");
+  };
+
   return (
     <>
       <div style={{ position: "fixed", top: 20, right: 20 }}>
-        <Button label="Sair" type="button" onclick={handleVoltarTelaInicial} />
+        <Button label="Sair" type="button" onclick={handleLogout} />
       </div>
       <div style={{ position: "fixed", top: 20, left: 20 }}>
         <Button label="Home" type="button" onclick={handleVoltarTelaInicial} />
