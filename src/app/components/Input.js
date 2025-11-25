@@ -1,18 +1,23 @@
 function Input({ type, value, onChange, placeholder, required, label, style }) {
   return (
-    <>
-      <label>{label}</label>
+    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+      {label && <label style={{ marginBottom: 5 }}>{label}</label>}
       <input
         type={type}
         value={value}
         onChange={onChange}
         className="inputs bg-foreground text-background rounded-md"
-        style={style ?? { width: "100%", padding: 10, marginTop: 10 }}
+        style={
+          style ?? {
+            width: "100%",
+            padding: 10,
+          }
+        }
         required={required}
         placeholder={placeholder}
-        auto-complete="off"
-      ></input>
-    </>
+        autoComplete="off"
+      />
+    </div>
   );
 }
 export default Input;

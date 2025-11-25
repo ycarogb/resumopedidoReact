@@ -34,3 +34,17 @@ button {
   cursor: pointer;
   color: #ededed;
 }
+
+.input-busca::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.input-busca:hover {
+  border-color: #ff69b4;
+}
+
+.input-busca:focus {
+  border-color: #ff69b4;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.15);
+}
