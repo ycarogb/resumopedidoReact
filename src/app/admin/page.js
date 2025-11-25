@@ -41,6 +41,7 @@ export default function AdminLayout({ children }) {
           padding: 20,
           border: "1px solid #ccc",
           borderRadius: 8,
+          marginTop: 100,
         }}
       >
         <Button
