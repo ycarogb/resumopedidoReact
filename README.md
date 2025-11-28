@@ -1,41 +1,74 @@
-# ResumoPedidosApp - V2
+# ResumoPedidosApp (Versão 2.0)
 
-## Descrição
+Essa aplicação tem objetivo gerar um resumo de pedido. Esse resumo é composto por todos os produtos solicitados pelo cliente, incluindo a taxa de entrega e uma porcentagem de desconto (caso seja do interesse do usuário). 
+O resumo é um texto e com o formato ideal para compartilhar via mensagem para os clientes do usuário.
 
-Essa aplicação tem objetivo retornar um resumo de pedido para um cliente.
-Os produtos são cadastrados na própria plataforma e o usuário pode copiar o resumo ao final para compartilhar com o seu cliente.
-
-É um projeto para estudo e exploração do React
+A primeira versão desse projeto consiste em uma api em .NET, que pode ser visitada [clicando aqui](https://github.com/ycarogb/ResumoPedidosApp). Agora, a segunda versão é no formato em frontend, com dados estáticos incluídos diretamente no código da aplicação. O que será que virá por aí? 
 
 [![Generic badge](https://img.shields.io/badge/Version-2.0-<COLOR>.svg)](https://shields.io/)
+---
 
-## Funcionalidades
+## 🚀 Funcionalidades
 
-- Autenticação de usuário
-- Adicionar, remover e editar registros de pratos com descrição e valor
-- Criação resumo do pedido em formato de texto
-- Cópia de texto do resumo do pedido
+- Autenticação de usuário via login e senha cadastrados na aplicação
+- Autenticação via conta do Google
+- Adicionar e remover registros de pratos com descrição e valor (_como os dados são estáticos nessa versão, essas alterações nos registros ainda são desfeitas ao atualizar a página_)
+- Consulta à lista de produtos cadastrados
+- Geração do resumo do pedido em formato de texto
+- Permissão para copiar o texto do resumo
 
-## Como rodar a aplicação
+---
 
-1. Instale as dependências:
+## 🧱 Tecnologias
+
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+## 🔧 Como executar
+
+1. Clone o repositório:
+   
+ ```sh
+ git clone https://github.com/ycarogb/resumopedidoReact.git
+ cd resumoPedidoReact
+ ```
+   
+2. Instale as dependências:
 
    ```sh
    npm install
    ```
 
-2. Rode o projeto em modo desenvolvimento:
+3. Rode o projeto em modo desenvolvimento:
 
    ```sh
    npm run dev
    ```
 
-## Tecnologias utilizadas
+4. Acesse no navegador:
+ ```
+ http://localhost:3000
+ ```
 
-- [React](https://react.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
+## 🧩 Estrutura do projeto
 
-## Autor
+- **public/** – Arquivos oriundos da criação do projeto React
+- **public/inages**  – Imagens utilizadas no desenvolvimento da aplicação
+- **src/** – página de login e arquivos de configuração de estilização com css
+- **src/admin/** - página inicial da aplicação
+- **src/cadastrar-produto/** - página de cadastrar produto
+- **src/cadastrar-usuario/** - página de cadastrar usuário
+- **src/components/** - pasta com os componentes do frontend
+- **src/criar-novo-resumo-pedido/** - página para geração de resumo do pedido
+- **src/lib/** - pasta com os dados estáticos de pratos e usuários
+- **src/produtos-cadastrados/** - página de listagem dos produtos cadastrados
+- **src/recuperar-senha/** - página para recuperação de senha dos usuários
+
+
+
+## 👥 Autoria
 
  <img style="border-radius: 80%;" src="https://i1.sndcdn.com/avatars-001002863491-80v8qp-t500x500.jpg" width="100px;" alt=""/>
 <br />
