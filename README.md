@@ -1,7 +1,7 @@
 # ResumoPedidosApp (Versão 2.0)
 
-Essa aplicação tem objetivo gerar um resumo de pedido. Esse resumo é composto por todos os produtos solicitados pelo cliente, incluindo a taxa de entrega e uma porcentagem de desconto (caso seja do interesse do usuário). 
-O resumo é um texto e com o formato ideal para compartilhar via mensagem para os clientes do usuário.
+Essa aplicação tem objetivo gerar um resumo de pedido. O resumo é composto por todos os produtos solicitados pelo cliente, incluindo a taxa de entrega e uma porcentagem de desconto (caso seja do interesse do usuário). 
+O resumo é um texto com o formato ideal para compartilhar via mensagem para os clientes do usuário.
 
 A primeira versão desse projeto consiste em uma api em .NET, que pode ser visitada [clicando aqui](https://github.com/ycarogb/ResumoPedidosApp). Agora, a segunda versão é no formato em frontend, com dados estáticos incluídos diretamente no código da aplicação. O que será que virá por aí? 
 
@@ -12,7 +12,7 @@ A primeira versão desse projeto consiste em uma api em .NET, que pode ser visit
 
 - Autenticação de usuário via login e senha cadastrados na aplicação
 - Autenticação via conta do Google
-- Adicionar e remover registros de pratos com descrição e valor (_como os dados são estáticos nessa versão, essas alterações nos registros ainda são desfeitas ao atualizar a página_)
+- Adicionar e remover registros de pratos com descrição e valor (_como os dados são estáticos nessa versão, essas alterações nos registros são desfeitas ao atualizar a página_)
 - Consulta à lista de produtos cadastrados
 - Geração do resumo do pedido em formato de texto
 - Permissão para copiar o texto do resumo
@@ -30,10 +30,10 @@ A primeira versão desse projeto consiste em uma api em .NET, que pode ser visit
 
 1. Clone o repositório:
    
- ```sh
- git clone https://github.com/ycarogb/resumopedidoReact.git
- cd resumoPedidoReact
- ```
+    ```sh
+    git clone https://github.com/ycarogb/resumopedidoReact.git
+    cd resumoPedidoReact
+    ```
    
 2. Instale as dependências:
 
@@ -48,14 +48,14 @@ A primeira versão desse projeto consiste em uma api em .NET, que pode ser visit
    ```
 
 4. Acesse no navegador:
- ```
- http://localhost:3000
- ```
+    ```
+    http://localhost:3000
+    ```
 
 ## 🧩 Estrutura do projeto
 
 - **public/** – Arquivos oriundos da criação do projeto React
-- **public/inages**  – Imagens utilizadas no desenvolvimento da aplicação
+- **public/images**  – Imagens utilizadas no desenvolvimento da aplicação
 - **src/** – página de login e arquivos de configuração de estilização com css
 - **src/admin/** - página inicial da aplicação
 - **src/cadastrar-produto/** - página de cadastrar produto
